@@ -41,6 +41,42 @@ use dmstr\cookieconsent\CookieConsent;
     </thead>
     <tbody>
         <tr>
+            <td>message</td>
+            <td>popup message</td>
+            <td> 'This website uses cookies. By continuing to use the website, you agree to the use of cookies' </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
+            <td>link</td>
+            <td>popup link</td>
+            <td> '' </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
+            <td>linkLabel</td>
+            <td>popup linkLabel. If empty does not display any link</td>
+            <td> '' </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
+            <td>dismiss</td>
+            <td>popup dismiss button. If empty does not display the button</td>
+            <td> '' </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
+            <td>allow</td>
+            <td>popup allow button. If empty does not display the button</td>
+            <td> '' </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
+            <td>deny</td>
+            <td>popup deny button. If empty does not display the button</td>
+            <td> '' </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
             <td>cookieName</td>
             <td>Defines the cookie name that Cookie Consent will use to store the status of the consent</td>
             <td> 'cookie_consent_status' </td>
@@ -66,8 +102,8 @@ use dmstr\cookieconsent\CookieConsent;
         </tr>
         <tr>
             <td>onCheck</td>
-            <td>A function that will be triggered when an instance of CookieConsent is made or the consent status change</td>
-            <td> function (type, didConsent) {} </td>
+            <td>A javascript function that will be triggered when an instance of CookieConsent is made or the consent status change</td>
+            <td> function (status, cookieConsentInstance) {} </td>
             <td> FUNCTION </td>
         </tr>
     </tbody>
