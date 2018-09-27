@@ -1,0 +1,18 @@
+.cookie-consent-popup {
+  background: #222;
+  color: #eee;
+  padding: 15px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99999999;
+}
+
+.cookie-consent-popup {
+    display: none;
+}
+
+.cookie-consent-popup.open {
+    display: block;
+}

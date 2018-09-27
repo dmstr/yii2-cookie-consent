@@ -1,0 +1,25 @@
+{
+  "name": "dmstr/yii2-cookie-consent",
+  "description": "Yii2 Cookie Consent Widget",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension",
+    "cookie consent"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "German Bisurgi",
+      "email": "g.bisurgi@herzogkommunikation.de"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "dmstr\\cookieconsent\\": "./src"
+    }
+  }
+}
