@@ -8,12 +8,6 @@ Usage with PHP
 use dmstr\cookieconsent\CookieConsent;
 
 <?= CookieConsent::widget([
-    "message" => "Diese Website benutzt Cookies. Wenn Sie die Website weiter nutzen, stimmen Sie der Verwendung von Cookies zu.",
-    "link" => "",
-    "linkLabel" => "Mehr Info",
-    "dismiss" => "Dismiss",
-    "allow" => "Allow",
-    "deny" => "Deny",
     "cookieName" => "cookie_consent_status",
     "cookiePath" => "/",
     "cookieDomain" => "",
@@ -32,12 +26,6 @@ Usage with TWIG
 ```php
 {{ use('dmstr/cookieconsent/CookieConsent') }}
 {{ CookieConsent_widget({
-    "message": "Diese Website benutzt Cookies. Wenn Sie die Website weiter nutzen, stimmen Sie der Verwendung von Cookies zu.",
-    "link": "",
-    "linkLabel": "Mehr Info",
-    "dismiss": "Dismiss",
-    "allow": "Allow",
-    "deny": "Deny",
     "cookieName": "cookie_consent_status",
     "cookiePath": "/",
     "cookieDomain": "",
@@ -49,6 +37,17 @@ Usage with TWIG
         if (status === 'denied') {}
     }"
 }) }}
+```
+
+and then anywhere in your code
+```html
+<div class="cookie-consent-popup">
+  <div class="cookie-consent-message">We are using cookies</div>
+  <a class="cookie-consent-link" href="SOME_LINK">Learn more</a>
+  <button class="cookie-consent-dismiss">Dismiss</button>
+  <button class="cookie-consent-deny">Deny</button>
+  <button class="cookie-consent-allow">Allow</button>
+</div>
 ```
 
 ## OPTIONS
@@ -63,43 +62,6 @@ Usage with TWIG
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>message</td>
-            <td>popup message</td>
-            <td> 'This website uses cookies. By continuing to use the website, you agree to the use of cookies' </td>
-            <td> STRING </td>
-        </tr>
-        <tr>
-            <td>link</td>
-            <td>popup link</td>
-            <td> '' </td>
-            <td> STRING </td>
-        </tr>
-        <tr>
-            <td>linkLabel</td>
-            <td>popup linkLabel. If empty does not display any link</td>
-            <td> '' </td>
-            <td> STRING </td>
-        </tr>
-        <tr>
-            <td>dismiss</td>
-            <td>popup dismiss button. If empty does not display the button</td>
-            <td> '' </td>
-            <td> STRING </td>
-        </tr>
-        <tr>
-            <td>allow</td>
-            <td>popup allow button. If empty does not display the button</td>
-            <td> '' </td>
-            <td> STRING </td>
-        </tr>
-        <tr>
-            <td>deny</td>
-            <td>popup deny button. If empty does not display the button</td>
-            <td> '' </td>
-            <td> STRING </td>
-        </tr>
-        <tr>
             <td>cookieName</td>
             <td>Defines the cookie name that Cookie Consent will use to store the status of the consent</td>
             <td> 'cookie_consent_status' </td>

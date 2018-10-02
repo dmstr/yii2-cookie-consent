@@ -9,10 +9,6 @@ class CookieConsentAsset extends AssetBundle
 
     public $sourcePath = __DIR__;
 
-    public $css = [
-        'styles/cookie-consent.css'
-    ];
-
     public $js = [
         'scripts/cookie-consent.js',
     ];
