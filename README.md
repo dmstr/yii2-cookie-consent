@@ -1,7 +1,7 @@
 # yii2-cookie-consent
 solution to the EU Cookie Law
 
-Usage
+Usage with PHP
 -----
 
 ```php
@@ -27,6 +27,29 @@ use dmstr\cookieconsent\CookieConsent;
 ]) ?>
 ```
 
+Usage with TWIG
+-----
+```php
+{{ use('dmstr/cookieconsent/CookieConsent') }}
+{{ CookieConsent_widget({
+    "message": "Diese Website benutzt Cookies. Wenn Sie die Website weiter nutzen, stimmen Sie der Verwendung von Cookies zu.",
+    "link": "",
+    "linkLabel": "Mehr Info",
+    "dismiss": "Dismiss",
+    "allow": "Allow",
+    "deny": "Deny",
+    "cookieName": "cookie_consent_status",
+    "cookiePath": "/",
+    "cookieDomain": "",
+    "cookieExpiryDays": 365,
+    "onCheck": "function (status, cc) {
+        console.log(cc.cookieName, '=', status);
+        if (status === 'undefined') {}
+        if (status === 'allowed') {}
+        if (status === 'denied') {}
+    }"
+}) }}
+```
 
 ## OPTIONS
 
