@@ -1,53 +1,66 @@
 # yii2-cookie-consent
 solution to the EU Cookie Law
 
-Usage with PHP
------
+## Getting started
+
+### Usage with PHP
 
 ```php
 use dmstr\cookieconsent\CookieConsent;
-
 <?= CookieConsent::widget([
-    "cookieName" => "cookie_consent_status",
-    "cookiePath" => "/",
-    "cookieDomain" => "",
-    "cookieExpiryDays" => 365,
-    "onCheck" => "function (status, cc) {
-        console.log(cc.cookieName, '=', status);
-        if (status === 'undefined') {}
-        if (status === 'allowed') {}
-        if (status === 'denied') {}
-    }"
+    "name" => "cookie_consent_status",
+    "path" => "/",
+    "domain" => "",
+    "expiryDays" => 365,
+    "message" => 'Durch die Zustimmung erklären Sie sich mit der Verwendung von Cookies und der Weitergabe Ihrer Nutzerdaten an Dritte einverstanden. Ihre Rechte als Benutzer finden Sie in unserer Datenschutzerklärung. Diese Einwilligung ist freiwillig und kann jederzeit widerrufen werden.',
+    "save" => 'Speichern',
+    "learnMore" => 'Datenschutzerklärung',
+    "link" => '#',
+    "consent" => [
+        "statistics" => [
+            "label" => "Statistics",
+            "cookies" => ["_ga", "_gat",  "_gid"]
+        ],
+        "marketing",
+        "external-media"
+    ]
 ]) ?>
 ```
 
-Usage with TWIG
------
+### Usage with Twig
+
 ```php
 {{ use('dmstr/cookieconsent/CookieConsent') }}
 {{ CookieConsent_widget({
-    "cookieName": "cookie_consent_status",
-    "cookiePath": "/",
-    "cookieDomain": "",
-    "cookieExpiryDays": 365,
-    "onCheck": "function (status, cc) {
-        console.log(cc.cookieName, '=', status);
-        if (status === 'undefined') {}
-        if (status === 'allowed') {}
-        if (status === 'denied') {}
-    }"
+    "name": "cookie_consent_status",
+    "path": "/",
+    "domain": "",
+    "expiryDays": 365,
+    "message": "This website uses cookies to ensure you get the best experience on our website.",
+    "save": "Save",
+    "learnMore": "More info",
+    "link": "#",
+    "consent": [
+        "statistics": [
+            "label": "Statistics",
+            "cookies": ["_ga", "_gat", "_gid"]
+        ],
+        "marketing",
+        "external-media"
+    ]
 }) }}
 ```
 
-and then anywhere in your code
-```html
-<div class="cookie-consent-popup">
-  <div class="cookie-consent-message">We are using cookies</div>
-  <a class="cookie-consent-link" href="SOME_LINK">Learn more</a>
-  <button class="cookie-consent-dismiss">Dismiss</button>
-  <button class="cookie-consent-deny">Deny</button>
-  <button class="cookie-consent-allow">Allow</button>
-</div>
+### Usage with TWIG
+
+```php
+{{ use('dmstr/cookieconsent/CookieConsent') }}
+{{ CookieConsent_widget({
+    "name": "cookie_consent_status",
+    "path": "/",
+    "domain": "",
+    "expiryDays": 365,
+}) }}
 ```
 
 ## OPTIONS
@@ -62,121 +75,125 @@ and then anywhere in your code
         </tr>
     </thead>
     <tbody>
-            <td>cookieName</td>
+        <tr>
+            <td>name</td>
             <td>Defines the cookie name that Cookie Consent will use to store the status of the consent</td>
             <td> 'cookie_consent_status' </td>
             <td> STRING </td>
         </tr>
         <tr>
-            <td>cookiePath</td>
+            <td>path</td>
             <td>Defines the cookie path</td>
             <td> '/' </td>
             <td> STRING </td>
         </tr>
         <tr>
-            <td>cookieDomain</td>
+            <td>domain</td>
             <td>Defines the cookie domain</td>
             <td> '' </td>
             <td> STRING </td>
         </tr>
         <tr>
-            <td>cookieExpiryDays</td>
+            <td>expiryDays</td>
             <td>Defines the cookie exipration days</td>
             <td> 365 </td>
             <td> INT </td>
         </tr>
         <tr>
-            <td>onCheck</td>
-            <td>A javascript function that will be triggered when an instance of CookieConsent is made or the consent status change</td>
-            <td> function (status, cookieConsentInstance) {} </td>
-            <td> FUNCTION </td>
+            <td>message</td>
+            <td>The message in the popup</td>
+            <td> 'This website uses cookies to ensure you get the best experience on our website.' </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
+            <td>save</td>
+            <td>The save button text</td>
+            <td> 'Save' </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
+            <td>learnMore</td>
+            <td>The link text</td>
+            <td> 'More info' </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
+            <td>link</td>
+            <td>The link pointing to your privacy policy page</td>
+            <td> '#' </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
+            <td>consent</td>
+            <td>A configuration array that will tell the cookie consent what it should do. Keys are the consent values that will be stored in the consent cookie. Labels are the checkbos labes. If no label is set the key will be used instead. The cookies array are a list of cookies names that can be deleted (when possible) when the corresponding consent value is revoked. See the above example "Usage with PHP"</td>
+            <td> [] </td>
+            <td> ARRAY </td>
         </tr>
     </tbody>
 </table>
 
-## HTML
-This Cookie Consent library works in a declarative approach. Thats mean that you
-just need to put the right classes in your html get it working.
-
-* `cookie-consent-popup`: to display and hide the a popup. The popup is not displayed
-by default and will become a `open` class for displaying.
-
-* `cookie-consent-dismiss`: stores a cookie with value `dismissed`, triggers
-`onCheck` hook function and hides the popup.
-
-* `cookie-consent-allow`: stores a cookie with value `allowed`, triggers
-`onCheck` hook function and hides the popup.
-
-* `cookie-consent-deny`: stores a cookie with value `denied`, triggers `onCheck`
-hook function and open the popup.
-
-* `cookie-consent-open`: open the popup.
-
-* `cookie-consent-close`: close the popup.
+## Open and close the popup
 
 ```html
-<div class="cookie-consent-popup">
-  <div>We are using cookies</div>
-  <a href="">Learn more</a>
-  <button class="cookie-consent-dismiss">Dismiss</button>
-  <button class="cookie-consent-deny">Deny</button>
-  <button class="cookie-consent-allow">Allow</button>
-</div>
+<button class="cookie-consent-open">Open popup</button>
+<button class="cookie-consent-close">Close popup</button>
 ```
 
-Your are no obligated to put buttons only in the popup. You can (and should) put
-this in an accesible way for your user too everywhere in your website.
-
-## HOOK (onCheck)
-Disabling and enabling cookies should be done setting the Cookie Consent `onCheck`
-function in the options object by initialitiation. This function provides you
-a the consent status ('dismissed', 'allowed', 'denied') an the actuall Cookie Consent
-instance.
+## CookieConsentHelper (Backend) (Yii)
 
 ```php
-<?= CookieConsent::widget([
-  "onCheck" => "function (status, cc) {
-      if (status === 'allowed' || status === 'dismissed') {
-        // enable cookies
-      } else {
-        // disable cookies
-      }
-  }"
-]) ?>
+'components' => [
+    'cookieConsentHelper' => [
+        'class' => dmstr\cookieconsent\components\CookieConsentHelper::class
+    ]
+]
 ```
 
-## HELPER METHODS
-Cookie Consent have some useful methods for cookie management.
+```php
+<?php if (\Yii::$app->cookieConsentHelper->hasConsent('statistics')): ?>
+    <!-- Google Analytics Script-->
+<?php endif; ?>
+```
 
-<table>
-    <thead>
-        <tr>
-            <th>method</th>
-            <th>description</th>
-            <th>params</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>getCookie</td>
-            <td>returns the value of a cookie if exist</td>
-            <td>(STRING name)</td>
-        </tr>
-        <tr>
-            <td>setCookie</td>
-            <td>sets a cookie or overwrites it if exist</td>
-            <td>(STRING name), (STRING value), (INT expiryDays), (STRING domain), (STRING path)</td>
-        </tr>
-        <tr>
-            <td>deleteDomain</td>
-            <td>removes the cookie by expiring it (set the expiryDays)</td>
-            <td>(STRING name)</td>
-        </tr>
-    </tbody>
-</table>
 
-```javascript
-cc.getCookie('cookieName');
-cc.setCookie('name', 'value', expiryDays, 'domain', 'path');
-cc.deleteCookie('cookieName');
+## Settings config example [phemellc/yii2-settings](https://github.com/phemellc/yii2-settings)
+
+* section: cookie-consent
+* key: config
+* type: object
+
+```json
+{
+  "name": "cookie_consent_status",
+  "path": "/",
+  "domain": "",
+  "expiryDays": 365,
+  "message": "Durch die Zustimmung erklären Sie sich mit der Verwendung von Cookies und der Weitergabe Ihrer Nutzerdaten an Dritte einverstanden. Ihre Rechte als Benutzer finden Sie in unserer Datenschutzerkäung. Diese Einwilligung ist freiwillig und kann jederzeit widerrufen werden.",
+  "save": "Speichern",
+  "learnMore": "Datenschutzerklärung",
+  "link": "#",
+  "consent": {
+    "statistics": {
+      "label": "Statistics",
+      "cookies": [
+        "_ga",
+        "_gat",
+        "_gid"
+      ]
+    },
+    "0": "marketing",
+    "1": "external-media"
+  }
+}
+```
+
+```php
+<?php
+    $config = Yii::$app->settings->get('config', 'cookie-consent', []);
+    $config = isset($config->scalar) ? $config->scalar : '{}';
+    $config = json_decode($config, true);
+?>
+
+<?= CookieConsent::widget($config) ?>
+?>
 ```
