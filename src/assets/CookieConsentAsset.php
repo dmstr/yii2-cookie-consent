@@ -13,6 +13,10 @@ class CookieConsentAsset extends AssetBundle
         'scripts/cookie-consent.js',
     ];
 
+    public $css = [
+        'styles/' . (YII_ENV_PROD ? 'cookie-consent.min.css' : 'cookie-consent.css'),
+    ];
+
     public $depends = [
         'yii\web\YiiAsset',
     ];

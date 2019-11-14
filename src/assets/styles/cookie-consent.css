@@ -1,0 +1,29 @@
+.cookie-consent-popup {
+    animation-name: show;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3000;
+}
+
+.cookie-consent-popup.open {
+    display: block;
+    opacity: 1;
+    animation-name: show;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+}
+
+@keyframes show {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes hide {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
