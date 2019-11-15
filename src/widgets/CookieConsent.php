@@ -131,6 +131,8 @@ JS
     {
         parent::init();
 
+        Yii::$app->{$this->cookieConsentHelperComponent}->getConsent();
+
         if (empty($this->name)) {
             if (Yii::$app->has($this->cookieConsentHelperComponent)) {
                 $this->name = Yii::$app->{$this->cookieConsentHelperComponent}->cookieName;
