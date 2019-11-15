@@ -115,8 +115,8 @@ class CookieConsent extends Widget
 
     protected function registerAssets()
     {
-        $econdedConsentData = json_encode($this->_consentData);
-
+        $encondedConsentData = json_encode($this->_consentData);
+        
         $this->view->registerJs(<<<JS
 window.addEventListener('load', function () {
     window.cookieConsent = new CookieConsent({
@@ -126,7 +126,7 @@ window.addEventListener('load', function () {
       expiryDays: {$this->expiryDays},
     });
     window.cookieConsent.afterSave = function (cc) {
-      cc.clean({$econdedConsentData})
+      cc.clean({$encondedConsentData})
       window.location.reload()
     }
 });
