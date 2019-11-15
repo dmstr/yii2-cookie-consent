@@ -8,23 +8,42 @@ solution to the EU Cookie Law
 ```php
 use dmstr\cookieconsent\CookieConsent;
 <?= CookieConsent::widget([
-    "name" => "cookie_consent_status",
-    "path" => "/",
-    "domain" => "",
-    "expiryDays" => 365,
-    "message" => 'Durch die Zustimmung erklären Sie sich mit der Verwendung von Cookies und der Weitergabe Ihrer Nutzerdaten an Dritte einverstanden. Ihre Rechte als Benutzer finden Sie in unserer Datenschutzerklärung. Diese Einwilligung ist freiwillig und kann jederzeit widerrufen werden.',
-    "save" => 'Speichern',
-    "learnMore" => 'Datenschutzerklärung',
-    "link" => '#',
-    "consent" => [
-        "statistics" => [
-            "label" => "Statistics",
-            "cookies" => ["_ga", "_gat",  "_gid"]
+    'name' => 'cookie_consent_status',
+    'path' => '/',
+    'domain' => '',
+    'expiryDays' => 365,
+    'message' => 'Durch die Zustimmung erklären Sie sich mit der Verwendung von Cookies und der Weitergabe Ihrer Nutzerdaten an Dritte einverstanden. Ihre Rechte als Benutzer finden Sie in unserer Datenschutzerklärung. Diese Einwilligung ist freiwillig und kann jederzeit widerrufen werden.',
+    'save' => 'Speichern',
+    'learnMore' => 'Datenschutzerklärung',
+    'link' => '#',
+    'consent' => [
+        'statistics' => [
+            'label' => 'Statistics',
+            'cookies' => ['_ga', '_gat',  '_gid']
         ],
-        "marketing",
-        "external-media"
+        'marketing',
+        'external-media'
     ]
 ]) ?>
+```
+
+
+## CookieConsentHelper Component
+
+yii config
+```php
+'components' => [
+    'cookieConsentHelper' => [
+        'class' => dmstr\cookieconsent\components\CookieConsentHelper::class
+    ]
+]
+```
+
+Example usuage
+```php
+<?php if (\Yii::$app->cookieConsentHelper->hasConsent('statistics')): ?>
+    <!-- Google Analytics Script-->
+<?php endif; ?>
 ```
 
 ### Usage with Twig
@@ -32,21 +51,21 @@ use dmstr\cookieconsent\CookieConsent;
 ```php
 {{ use('dmstr/cookieconsent/CookieConsent') }}
 {{ CookieConsent_widget({
-    "name": "cookie_consent_status",
-    "path": "/",
-    "domain": "",
-    "expiryDays": 365,
-    "message": "This website uses cookies to ensure you get the best experience on our website.",
-    "save": "Save",
-    "learnMore": "More info",
-    "link": "#",
-    "consent": [
-        "statistics": [
-            "label": "Statistics",
-            "cookies": ["_ga", "_gat", "_gid"]
+    'name': 'cookie_consent_status',
+    'path': '/',
+    'domain': '',
+    'expiryDays': 365,
+    'message': 'This website uses cookies to ensure you get the best experience on our website.',
+    'save': 'Save',
+    'learnMore': 'More info',
+    'link': '#',
+    'consent': [
+        'statistics': [
+            'label': 'Statistics',
+            'cookies': ['_ga', '_gat', '_gid']
         ],
-        "marketing",
-        "external-media"
+        'marketing',
+        'external-media'
     ]
 }) }}
 ```
@@ -56,10 +75,10 @@ use dmstr\cookieconsent\CookieConsent;
 ```php
 {{ use('dmstr/cookieconsent/CookieConsent') }}
 {{ CookieConsent_widget({
-    "name": "cookie_consent_status",
-    "path": "/",
-    "domain": "",
-    "expiryDays": 365,
+    'name': 'cookie_consent_status',
+    'path': '/',
+    'domain': '',
+    'expiryDays': 365
 }) }}
 ```
 
@@ -78,19 +97,19 @@ use dmstr\cookieconsent\CookieConsent;
         <tr>
             <td>name</td>
             <td>Defines the cookie name that Cookie Consent will use to store the status of the consent</td>
-            <td> 'cookie_consent_status' </td>
+            <td> "cookie_consent_status" </td>
             <td> STRING </td>
         </tr>
         <tr>
             <td>path</td>
             <td>Defines the cookie path</td>
-            <td> '/' </td>
+            <td> "/" </td>
             <td> STRING </td>
         </tr>
         <tr>
             <td>domain</td>
             <td>Defines the cookie domain</td>
-            <td> '' </td>
+            <td> "" </td>
             <td> STRING </td>
         </tr>
         <tr>
@@ -102,25 +121,25 @@ use dmstr\cookieconsent\CookieConsent;
         <tr>
             <td>message</td>
             <td>The message in the popup</td>
-            <td> 'This website uses cookies to ensure you get the best experience on our website.' </td>
+            <td> "This website uses cookies to ensure you get the best experience on our website." </td>
             <td> STRING </td>
         </tr>
         <tr>
             <td>save</td>
             <td>The save button text</td>
-            <td> 'Save' </td>
+            <td> "Save" </td>
             <td> STRING </td>
         </tr>
         <tr>
             <td>learnMore</td>
             <td>The link text</td>
-            <td> 'More info' </td>
+            <td> "More info" </td>
             <td> STRING </td>
         </tr>
         <tr>
             <td>link</td>
             <td>The link pointing to your privacy policy page</td>
-            <td> '#' </td>
+            <td> "#" </td>
             <td> STRING </td>
         </tr>
         <tr>
@@ -137,22 +156,6 @@ use dmstr\cookieconsent\CookieConsent;
 ```html
 <button class="cookie-consent-open">Open popup</button>
 <button class="cookie-consent-close">Close popup</button>
-```
-
-## CookieConsentHelper (Backend) (Yii)
-
-```php
-'components' => [
-    'cookieConsentHelper' => [
-        'class' => dmstr\cookieconsent\components\CookieConsentHelper::class
-    ]
-]
-```
-
-```php
-<?php if (\Yii::$app->cookieConsentHelper->hasConsent('statistics')): ?>
-    <!-- Google Analytics Script-->
-<?php endif; ?>
 ```
 
 
@@ -195,5 +198,8 @@ use dmstr\cookieconsent\CookieConsent;
 ?>
 
 <?= CookieConsent::widget($config) ?>
-?>
 ```
+
+## Worth knowing
+
+Widgets throws an `yii\base\InvalidConfigException` if you define an invalid cookie consent helper component
