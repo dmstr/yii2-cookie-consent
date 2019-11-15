@@ -27,6 +27,25 @@ use dmstr\cookieconsent\CookieConsent;
 ]) ?>
 ```
 
+
+## CookieConsentHelper Component
+
+yii config
+```php
+'components' => [
+    'cookieConsentHelper' => [
+        'class' => dmstr\cookieconsent\components\CookieConsentHelper::class
+    ]
+]
+```
+
+Example usuage
+```php
+<?php if (\Yii::$app->cookieConsentHelper->hasConsent('statistics')): ?>
+    <!-- Google Analytics Script-->
+<?php endif; ?>
+```
+
 ### Usage with Twig
 
 ```php
@@ -139,22 +158,6 @@ use dmstr\cookieconsent\CookieConsent;
 <button class="cookie-consent-close">Close popup</button>
 ```
 
-## CookieConsentHelper (Backend) (Yii)
-
-```php
-'components' => [
-    'cookieConsentHelper' => [
-        'class' => dmstr\cookieconsent\components\CookieConsentHelper::class
-    ]
-]
-```
-
-```php
-<?php if (\Yii::$app->cookieConsentHelper->hasConsent('statistics')): ?>
-    <!-- Google Analytics Script-->
-<?php endif; ?>
-```
-
 
 ## Settings config example [phemellc/yii2-settings](https://github.com/phemellc/yii2-settings)
 
@@ -196,3 +199,7 @@ use dmstr\cookieconsent\CookieConsent;
 
 <?= CookieConsent::widget($config) ?>
 ```
+
+## Worth knowing
+
+Widgets throws an `yii\base\InvalidConfigException` if you define an invalid cookie consent helper component

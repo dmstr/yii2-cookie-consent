@@ -31,6 +31,10 @@ use yii\base\Widget;
  * --- PROTECTED PROPERTIES ---
  *
  * @property array $_consentData
+ *
+ * --- WORTH KNOWING ---
+ *
+ * Widgets throws an yii\base\InvalidConfigException if you define an invalid cookie consent helper component
  */
 class CookieConsent extends Widget
 {
@@ -116,7 +120,7 @@ class CookieConsent extends Widget
     protected function registerAssets()
     {
         $encondedConsentData = json_encode($this->_consentData);
-        
+
         $this->view->registerJs(<<<JS
 window.addEventListener('load', function () {
     window.cookieConsent = new CookieConsent({
@@ -138,14 +142,14 @@ JS
     {
         parent::init();
 
-        Yii::$app->{$this->cookieConsentHelperComponent}->getConsent();
+        if (Yii::$app->has($this->cookieConsentHelperComponent)) {
+            Yii::$app->{$this->cookieConsentHelperComponent}->getConsent();
+        } else {
+            throw new InvalidConfigException('You must provide a valid cookie conset helper component');
+        }
 
         if (empty($this->name)) {
-            if (Yii::$app->has($this->cookieConsentHelperComponent)) {
-                $this->name = Yii::$app->{$this->cookieConsentHelperComponent}->cookieName;
-            } else {
-                throw new InvalidConfigException('You must either provide a valid cookie conset helper component or set the name propertiy');
-            }
+            $this->name = Yii::$app->{$this->cookieConsentHelperComponent}->cookieName;
         }
 
         // ensure that $consent has defaults values for each consent.
