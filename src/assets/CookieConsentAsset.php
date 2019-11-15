@@ -21,7 +21,7 @@ class CookieConsentAsset extends AssetBundle
     ];
 
     public $depends = [
-        "dmstr\cookieconsent\assets\CookieConsentJSAsset"
+        'dmstr\cookieconsent\assets\CookieConsentJSAsset'
     ];
 
 }
