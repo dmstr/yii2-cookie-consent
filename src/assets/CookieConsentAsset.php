@@ -18,7 +18,7 @@ class CookieConsentAsset extends AssetBundle
     ];
 
     public $depends = [
-        'yii\web\YiiAsset',
+        "dmstr\cookieconsent\assets\CookieConsentJSAsset"
     ];
 
 }
