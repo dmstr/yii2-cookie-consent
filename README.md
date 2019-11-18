@@ -3,6 +3,12 @@ solution to the EU Cookie Law
 
 ## Getting started
 
+### Installation
+
+```
+composer require dmstr/yii2-cookie-consent
+```
+
 ### Usage with PHP
 
 ```php
@@ -82,7 +88,7 @@ Example usuage
 }) }}
 ```
 
-## OPTIONS
+## Options
 
 <table>
     <thead>
