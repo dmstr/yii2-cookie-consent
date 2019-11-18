@@ -101,6 +101,12 @@ Example usuage
             <td> STRING </td>
         </tr>
         <tr>
+            <td>cookieConsentHelperComponent</td>
+            <td>Component name of the defined cookie consent helper componend</td>
+            <td> "cookieConsentHelper" </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
             <td>path</td>
             <td>Defines the cookie path</td>
             <td> "/" </td>
