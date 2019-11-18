@@ -96,8 +96,8 @@ Example usuage
     <tbody>
         <tr>
             <td>name</td>
-            <td>Defines the cookie name that Cookie Consent will use to store the status of the consent</td>
-            <td> "cookie_consent_status" </td>
+            <td>Defines the cookie name that Cookie Consent will use to store the status of the consent. Default is cookie conset helper's cookie name</td>
+            <td> "" </td>
             <td> STRING </td>
         </tr>
         <tr>
