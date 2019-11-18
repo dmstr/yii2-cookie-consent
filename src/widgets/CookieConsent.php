@@ -45,12 +45,6 @@ class CookieConsent extends Widget
     public $name;
 
     /**
-     * @var $cookieConsentHelperComponent
-     * Name of cookie consent component
-     */
-    public $cookieConsentHelperComponent = 'cookieConsentHelper';
-
-    /**
      * @var $path
      * Cookie path
      */
@@ -141,16 +135,6 @@ JS
     public function init()
     {
         parent::init();
-
-        if (Yii::$app->has($this->cookieConsentHelperComponent)) {
-            Yii::$app->{$this->cookieConsentHelperComponent}->getConsent();
-        } else {
-            throw new InvalidConfigException('You must provide a valid cookie conset helper component');
-        }
-
-        if (empty($this->name)) {
-            $this->name = Yii::$app->{$this->cookieConsentHelperComponent}->cookieName;
-        }
 
         // ensure that $consent has defaults values for each consent.
         foreach ($this->consent as $key => $item) {

@@ -12,7 +12,7 @@ composer require dmstr/yii2-cookie-consent
 ### Usage with PHP
 
 ```php
-use dmstr\cookieconsent\CookieConsent;
+use dmstr\cookieconsent\widgets\CookieConsent;
 <?= CookieConsent::widget([
     'name' => 'cookie_consent_status',
     'path' => '/',
@@ -55,7 +55,7 @@ Example usuage
 ### Usage with Twig
 
 ```php
-{{ use('dmstr/cookieconsent/CookieConsent') }}
+{{ use('dmstr/cookieconsent/widgets/CookieConsent') }}
 {{ CookieConsent_widget({
     'name': 'cookie_consent_status',
     'path': '/',
@@ -73,18 +73,6 @@ Example usuage
         'marketing',
         'external-media'
     ]
-}) }}
-```
-
-### Usage with TWIG
-
-```php
-{{ use('dmstr/cookieconsent/CookieConsent') }}
-{{ CookieConsent_widget({
-    'name': 'cookie_consent_status',
-    'path': '/',
-    'domain': '',
-    'expiryDays': 365
 }) }}
 ```
 
