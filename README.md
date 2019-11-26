@@ -25,7 +25,11 @@ use dmstr\cookieconsent\widgets\CookieConsent;
     'consent' => [
         'statistics' => [
             'label' => 'Statistics',
-            'cookies' => ['_ga', '_gat',  '_gid']
+            'cookies' => [
+                ['name' => '_ga'],
+                ['name' => '_gat', 'domain' => '', 'path' => '/'],
+                ['name' => '_gid', 'domain' => '', 'path' => '/']
+            ]
         ],
         'marketing',
         'external-media'
@@ -92,12 +96,6 @@ Example usuage
             <td>name</td>
             <td>Defines the cookie name that Cookie Consent will use to store the status of the consent. Default is cookie conset helper's cookie name</td>
             <td> "" </td>
-            <td> STRING </td>
-        </tr>
-        <tr>
-            <td>cookieConsentHelperComponent</td>
-            <td>Component name of the defined cookie consent helper componend</td>
-            <td> "cookieConsentHelper" </td>
             <td> STRING </td>
         </tr>
         <tr>
@@ -171,7 +169,7 @@ Example usuage
   "path": "/",
   "domain": "",
   "expiryDays": 365,
-  "message": "Durch die Zustimmung erklären Sie sich mit der Verwendung von Cookies und der Weitergabe Ihrer Nutzerdaten an Dritte einverstanden. Ihre Rechte als Benutzer finden Sie in unserer Datenschutzerkäung. Diese Einwilligung ist freiwillig und kann jederzeit widerrufen werden.",
+  "message": "Durch die Zustimmung erklären Sie sich mit der Verwendung von Cookies und der Weitergabe Ihrer Nutzerdaten an Dritte einverstanden. Ihre Rechte als Benutzer finden Sie in unserer Datenschutzerklärung. Diese Einwilligung ist freiwillig und kann jederzeit widerrufen werden.",
   "save": "Speichern",
   "learnMore": "Datenschutzerklärung",
   "link": "#",
@@ -179,9 +177,19 @@ Example usuage
     "statistics": {
       "label": "Statistics",
       "cookies": [
-        "_ga",
-        "_gat",
-        "_gid"
+        {
+          "name": "_ga"
+        },
+        {
+          "name": "_gat",
+          "domain": "",
+          "path": "/"
+        },
+        {
+          "name": "_gid",
+          "domain": "",
+          "path": "/"
+        }
       ]
     },
     "0": "marketing",
