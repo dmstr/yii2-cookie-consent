@@ -24,6 +24,8 @@ use yii\base\Widget;
  * @property string $expiryDays
  * @property string $message
  * @property string $save
+ * @property string $acceptAll
+ * @property string $denyAll
  * @property string $learnMore
  * @property string $link
  * @property array $consent
@@ -72,6 +74,18 @@ class CookieConsent extends Widget
      * Label for save button
      */
     public $save = 'Save';
+
+    /**
+     * @var $acceptAll
+     * Label for accept all button
+     */
+    public $acceptAll = 'Accept all';
+
+    /**
+     * @var $controlsOpen
+     * Label for open controls button
+     */
+    public $controlsOpen = 'Change';
 
     /**
      * @var $learnMore
@@ -155,8 +169,24 @@ JS
                 $cookies = [];
             }
 
+            if (isset($item['checked'])) {
+                $checked = $item['checked'];
+            } else {
+                $checked = false;
+            }
+
+            if (isset($item['disabled'])) {
+                $disabled = $item['disabled'];
+            } else {
+                $disabled = false;
+            }
+
             $this->_consentData[$key]['label'] = $label;
             $this->_consentData[$key]['cookies'] = $cookies;
+            $this->_consentData[$key]['checked'] = $checked;
+            $this->_consentData[$key]['disabled'] = $disabled;
+
+//            \yii\helpers\VarDumper::dump($this->_consentData, 10,1); exit;
 
         }
     }
@@ -168,6 +198,8 @@ JS
         return $this->render('cookie-consent-popup', [
             'message' => $this->message,
             'save' => $this->save,
+            'acceptAll' => $this->acceptAll,
+            'controlsOpen' => $this->controlsOpen,
             'learnMore' => $this->learnMore,
             'link' => $this->link,
             'consent' => $this->_consentData

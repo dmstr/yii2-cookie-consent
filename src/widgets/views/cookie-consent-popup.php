@@ -21,17 +21,24 @@ use yii\helpers\Html; ?>
         <span class="cookie-consent-text"><?= Html::encode($message) ?></span>
         <?= Html::a($learnMore, $link, ['class' => 'cookie-consent-link']) ?>
     </p>
+    <div>
+        <button class="cookie-consent-controls-open"><?= Html::encode($controlsOpen) ?></button>
+        <button class="cookie-consent-accept-all"><?= Html::encode($acceptAll) ?></button>
+    </div>
     <div class="cookie-consent-controls">
-        <?php foreach ($consent as $key => $item) : ?>
-            <label class="cookie-consent-control">
-                <?= Html::checkbox('cookie-consent-checkbox', false, [
-                    'class' => 'cookie-consent-checkbox',
-                    'data-cc-namespace' => 'popup',
-                    'data-cc-consent' => $key
-                ]) ?>
-                <span><?= Html::encode($item["label"]) ?></span>
-            </label>
-        <?php endforeach ?>
+        <div>
+            <?php foreach ($consent as $key => $item) : ?>
+                <label class="cookie-consent-control">
+                    <?= Html::checkbox('cookie-consent-checkbox', $item["checked"], [
+                        'class' => 'cookie-consent-checkbox',
+                        'data-cc-namespace' => 'popup',
+                        'data-cc-consent' => $key,
+                        'disabled' => $item["disabled"]
+                    ]) ?>
+                    <span><?= Html::encode($item["label"]) ?></span>
+                </label>
+            <?php endforeach ?>
+        </div>
         <button class="cookie-consent-save" data-cc-namespace="popup"><?= Html::encode($save) ?></button>
     </div>
 </div>

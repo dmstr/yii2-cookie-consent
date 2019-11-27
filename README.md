@@ -18,11 +18,18 @@ use dmstr\cookieconsent\widgets\CookieConsent;
     'path' => '/',
     'domain' => '',
     'expiryDays' => 365,
-    'message' => 'Durch die Zustimmung erklären Sie sich mit der Verwendung von Cookies und der Weitergabe Ihrer Nutzerdaten an Dritte einverstanden. Ihre Rechte als Benutzer finden Sie in unserer Datenschutzerklärung. Diese Einwilligung ist freiwillig und kann jederzeit widerrufen werden.',
+    'message' => 'We use cookies to ensure the proper functioning of our website. For an improved visit experience we use analysis products. These are used when you agree with "Statistics".',
     'save' => 'Speichern',
+    'acceptAll' => 'AGREE',
+    'controlsOpen' => 'CHANGE',
     'learnMore' => 'Datenschutzerklärung',
     'link' => '#',
     'consent' => [
+        'necessary' => [
+            'label' => 'Necessary',
+            'checked' => true,
+            'disabled' => true
+        ],
         'statistics' => [
             'label' => 'Statistics',
             'cookies' => [
@@ -36,7 +43,6 @@ use dmstr\cookieconsent\widgets\CookieConsent;
     ]
 ]) ?>
 ```
-
 
 ## CookieConsentHelper Component
 
@@ -54,30 +60,6 @@ Example usuage
 <?php if (\Yii::$app->cookieConsentHelper->hasConsent('statistics')): ?>
     <!-- Google Analytics Script-->
 <?php endif; ?>
-```
-
-### Usage with Twig
-
-```php
-{{ use('dmstr/cookieconsent/widgets/CookieConsent') }}
-{{ CookieConsent_widget({
-    'name': 'cookie_consent_status',
-    'path': '/',
-    'domain': '',
-    'expiryDays': 365,
-    'message': 'This website uses cookies to ensure you get the best experience on our website.',
-    'save': 'Save',
-    'learnMore': 'More info',
-    'link': '#',
-    'consent': [
-        'statistics': [
-            'label': 'Statistics',
-            'cookies': ['_ga', '_gat', '_gid']
-        ],
-        'marketing',
-        'external-media'
-    ]
-}) }}
 ```
 
 ## Options
@@ -129,6 +111,18 @@ Example usuage
             <td> STRING </td>
         </tr>
         <tr>
+            <td>acceptAll</td>
+            <td>The accept all button text</td>
+            <td> "Accept all" </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
+            <td>controlsOpen</td>
+            <td>The open controls button text</td>
+            <td> "Change" </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
             <td>learnMore</td>
             <td>The link text</td>
             <td> "More info" </td>
@@ -142,7 +136,7 @@ Example usuage
         </tr>
         <tr>
             <td>consent</td>
-            <td>A configuration array that will tell the cookie consent what it should do. Keys are the consent values that will be stored in the consent cookie. Labels are the checkbos labes. If no label is set the key will be used instead. The cookies array are a list of cookies names that can be deleted (when possible) when the corresponding consent value is revoked. See the above example "Usage with PHP"</td>
+            <td>A configuration array that will tell the cookie consent what it should do. Keys are the consent values that will be stored in the consent cookie. Labels are the checkbos labes. If no label is set the key will be used instead. The cookies array are a list of cookies names that can be deleted (when possible) when the corresponding consent value is revoked. See the above example "Usage with PHP". Also is possible to start the checkbox checked or disabled</td>
             <td> [] </td>
             <td> ARRAY </td>
         </tr>
@@ -156,6 +150,72 @@ Example usuage
 <button class="cookie-consent-close">Close popup</button>
 ```
 
+### CSS Example
+
+```css
+.cookie-consent-popup {
+    animation-name: show;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    background-color: white;
+    display: none;
+    padding: 22px 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: initial !important;
+    text-align: center;
+    width: 100%;
+    z-index: 3000;
+}
+
+.cookie-consent-popup.open {
+    opacity: 1;
+    animation-name: show;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+}
+
+.cookie-consent-controls {
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height 0.5s ease-out;
+    -moz-transition: max-height 0.5s ease-out;
+    transition: max-height 0.5s ease-out;
+}
+
+.cookie-consent-controls.open {
+    border-top: 1px solid #ff8f2b;
+    margin: 15px 0 0 0;
+    max-height: 600px;
+    padding: 15px 0 0 0;
+}
+
+@keyframes show {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes hide {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+.cookie-consent-message {
+    margin: 0 0 15px 0 !important;
+}
+
+.cookie-consent-popup button {
+    border: 1px solid #ff8f2b;
+    color: #ff8f2b;
+    padding: 9px 13px;
+    width: 100px;
+}
+
+.cookie-consent-control {
+    margin: 0 15px 0 0;
+}
+```
 
 ## Settings config example [phemellc/yii2-settings](https://github.com/phemellc/yii2-settings)
 
@@ -169,11 +229,16 @@ Example usuage
   "path": "/",
   "domain": "",
   "expiryDays": 365,
-  "message": "Durch die Zustimmung erklären Sie sich mit der Verwendung von Cookies und der Weitergabe Ihrer Nutzerdaten an Dritte einverstanden. Ihre Rechte als Benutzer finden Sie in unserer Datenschutzerklärung. Diese Einwilligung ist freiwillig und kann jederzeit widerrufen werden.",
+  "message": "We use cookies to ensure the proper functioning of our website. For an improved visit experience we use analysis products. These are used when you agree with 'Statistics'.",
   "save": "Speichern",
   "learnMore": "Datenschutzerklärung",
   "link": "#",
   "consent": {
+    "necessary": {
+        "label": "Necessary",
+        "checked": true,
+        "disabled": true
+    },
     "statistics": {
       "label": "Statistics",
       "cookies": [
