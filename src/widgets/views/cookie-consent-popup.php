@@ -17,28 +17,26 @@
 use yii\helpers\Html; ?>
 
 <div class="cookie-consent-popup">
-    <p class="cookie-consent-message">
-        <span class="cookie-consent-text"><?= Html::encode($message) ?></span>
-        <?= Html::a($learnMore, $link, ['class' => 'cookie-consent-link']) ?>
-    </p>
-    <div>
-        <button class="cookie-consent-controls-open"><?= Html::encode($controlsOpen) ?></button>
-        <button class="cookie-consent-accept-all"><?= Html::encode($acceptAll) ?></button>
+    <div class="cookie-consent-top-wrapper">
+        <p class="cookie-consent-message">
+            <span class="cookie-consent-text"><?= $message ?></span>
+            <?= Html::a($learnMore, $link, ['class' => 'cookie-consent-link']) ?>
+        </p>
+        <button class="cookie-consent-accept-all"><?= $acceptAll ?></button>
+        <button class="cookie-consent-controls-open"><?= $controlsOpen ?></button>
     </div>
     <div class="cookie-consent-controls">
-        <div>
-            <?php foreach ($consent as $key => $item) : ?>
-                <label class="cookie-consent-control">
-                    <?= Html::checkbox('cookie-consent-checkbox', $item["checked"], [
-                        'class' => 'cookie-consent-checkbox',
-                        'data-cc-namespace' => 'popup',
-                        'data-cc-consent' => $key,
-                        'disabled' => $item["disabled"]
-                    ]) ?>
-                    <span><?= Html::encode($item["label"]) ?></span>
-                </label>
-            <?php endforeach ?>
-        </div>
-        <button class="cookie-consent-save" data-cc-namespace="popup"><?= Html::encode($save) ?></button>
+        <?php foreach ($consent as $key => $item) : ?>
+            <label for="<?= $key ?>" class="cookie-consent-control">
+                <?= Html::checkbox($key, $item["checked"], [
+                    'class' => 'cookie-consent-checkbox',
+                    'data-cc-consent' => $key,
+                    'disabled' => $item["disabled"],
+                    'id' => $key
+                ]) ?>
+                <span><?= $item["label"] ?></span>
+            </label>
+        <?php endforeach ?>
+        <button class="cookie-consent-save" data-cc-namespace="popup"><?= $save ?></button>
     </div>
 </div>
