@@ -19,7 +19,6 @@
     }
   ],
   "require": {
-    "fxp/composer-asset-plugin": "^1.2.0",
     "yiisoft/yii2": "~2.0.0",
     "npm-asset/dmstr--cookie-consent": "^0.2.0"
   },
