@@ -7,7 +7,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 3000;
+    z-index: 999999;
 }
 
 .cookie-consent-popup.open {
@@ -16,6 +16,31 @@
     animation-name: show;
     animation-duration: 1s;
     animation-timing-function: ease;
+}
+
+.cookie-consent-controls {
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height 0.5s ease-out;
+    -moz-transition: max-height 0.5s ease-out;
+    transition: max-height 0.5s ease-out;
+}
+
+.cookie-consent-controls.open {
+    margin: 0 0 30px 0;
+    max-height: 600px;
+}
+
+.cookie-consent-details {
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height 0.5s ease-out;
+    -moz-transition: max-height 0.5s ease-out;
+    transition: max-height 0.5s ease-out;
+}
+
+.cookie-consent-details.open {
+    max-height: 600px;
 }
 
 @keyframes show {
