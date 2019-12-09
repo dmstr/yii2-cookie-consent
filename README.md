@@ -36,6 +36,10 @@ use dmstr\cookieconsent\widgets\CookieConsent;
                 ['name' => '_ga'],
                 ['name' => '_gat', 'domain' => '', 'path' => '/'],
                 ['name' => '_gid', 'domain' => '', 'path' => '/']
+            ],
+            'details' => [
+                'Goal' => 'Create statistics data',
+                'Cookie Names' => '_ga, _gat, _gid, _gali'
             ]
         ],
         'marketing',
@@ -123,6 +127,12 @@ Example usuage
             <td> STRING </td>
         </tr>
         <tr>
+            <td>detailsOpen</td>
+            <td>The open details button text</td>
+            <td> "Details" </td>
+            <td> STRING </td>
+        </tr>
+        <tr>
             <td>learnMore</td>
             <td>The link text</td>
             <td> "More info" </td>
@@ -157,19 +167,16 @@ Example usuage
     animation-name: show;
     animation-duration: 1s;
     animation-timing-function: ease;
-    background-color: white;
     display: none;
-    padding: 22px 15px;
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
-    bottom: initial !important;
-    text-align: center;
     width: 100%;
-    z-index: 3000;
+    z-index: 999999;
 }
 
 .cookie-consent-popup.open {
+    display: block;
     opacity: 1;
     animation-name: show;
     animation-duration: 1s;
@@ -185,10 +192,20 @@ Example usuage
 }
 
 .cookie-consent-controls.open {
-    border-top: 1px solid #ff8f2b;
-    margin: 15px 0 0 0;
+    margin: 0 0 30px 0;
     max-height: 600px;
-    padding: 15px 0 0 0;
+}
+
+.cookie-consent-details {
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height 0.5s ease-out;
+    -moz-transition: max-height 0.5s ease-out;
+    transition: max-height 0.5s ease-out;
+}
+
+.cookie-consent-details.open {
+    max-height: 600px;
 }
 
 @keyframes show {
@@ -201,20 +218,6 @@ Example usuage
     to {opacity: 0;}
 }
 
-.cookie-consent-message {
-    margin: 0 0 15px 0 !important;
-}
-
-.cookie-consent-popup button {
-    border: 1px solid #ff8f2b;
-    color: #ff8f2b;
-    padding: 9px 13px;
-    width: 100px;
-}
-
-.cookie-consent-control {
-    margin: 0 15px 0 0;
-}
 ```
 
 ## Settings config example [phemellc/yii2-settings](https://github.com/phemellc/yii2-settings)
