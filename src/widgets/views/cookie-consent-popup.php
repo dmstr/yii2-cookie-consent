@@ -24,6 +24,7 @@ use yii\helpers\Html; ?>
         </p>
         <button class="cookie-consent-accept-all"><?= $acceptAll ?></button>
         <button class="cookie-consent-controls-open"><?= $controlsOpen ?></button>
+        <button class="cookie-consent-details-open"><?= $detailsOpen ?></button>
     </div>
     <div class="cookie-consent-controls">
         <?php foreach ($consent as $key => $item) : ?>
@@ -38,5 +39,22 @@ use yii\helpers\Html; ?>
             </label>
         <?php endforeach ?>
         <button class="cookie-consent-save" data-cc-namespace="popup"><?= $save ?></button>
+    </div>
+    <div class="cookie-consent-details">
+        <?php foreach ($consent as $key => $item) : ?>
+            <?php if (!empty($item['details'])): ?>
+                <label><?= $item["label"] ?></label>
+                <table>
+                    <?php foreach ($item['details'] as $key => $item) : ?>
+                        <?php if (!empty($key) && !empty($item)): ?>
+                            <tr>
+                                <td><?= $key ?></td>
+                                <td><?= $item ?></td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach ?>
+                </table>
+            <?php endif; ?>
+        <?php endforeach ?>
     </div>
 </div>

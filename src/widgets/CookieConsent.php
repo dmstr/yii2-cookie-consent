@@ -10,22 +10,20 @@
 namespace dmstr\cookieconsent\widgets;
 
 use dmstr\cookieconsent\assets\CookieConsentAsset;
-use Yii;
-use yii\base\InvalidConfigException;
 use yii\base\Widget;
 
 /**
  * --- PUBLIC PROPERTIES ---
  *
  * @property string $name
- * @property string $cookieConsentHelperComponent
  * @property string $path
  * @property string $domain
  * @property string $expiryDays
  * @property string $message
  * @property string $save
  * @property string $acceptAll
- * @property string $denyAll
+ * @property string $controlsOpen
+ * @property string $detailsOpen
  * @property string $learnMore
  * @property string $link
  * @property array $consent
@@ -86,6 +84,12 @@ class CookieConsent extends Widget
      * Label for open controls button
      */
     public $controlsOpen = 'Change';
+
+    /**
+     * @var $detailsOpen
+     * Label for open controls button
+     */
+    public $detailsOpen = 'Details';
 
     /**
      * @var $learnMore
@@ -169,6 +173,12 @@ JS
                 $cookies = [];
             }
 
+            if (isset($item['details'])) {
+                $details = $item['details'];
+            } else {
+                $details = [];
+            }
+
             if (isset($item['checked'])) {
                 $checked = $item['checked'];
             } else {
@@ -183,10 +193,9 @@ JS
 
             $this->_consentData[$key]['label'] = $label;
             $this->_consentData[$key]['cookies'] = $cookies;
+            $this->_consentData[$key]['details'] = $details;
             $this->_consentData[$key]['checked'] = $checked;
             $this->_consentData[$key]['disabled'] = $disabled;
-
-//            \yii\helpers\VarDumper::dump($this->_consentData, 10,1); exit;
 
         }
     }
@@ -200,6 +209,7 @@ JS
             'save' => $this->save,
             'acceptAll' => $this->acceptAll,
             'controlsOpen' => $this->controlsOpen,
+            'detailsOpen' => $this->detailsOpen,
             'learnMore' => $this->learnMore,
             'link' => $this->link,
             'consent' => $this->_consentData
