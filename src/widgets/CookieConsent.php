@@ -25,6 +25,8 @@ use yii\base\Widget;
  * @property string $controlsOpen
  * @property string $detailsOpen
  * @property string $learnMore
+ * @property boolean $visibleControls
+ * @property boolean $visibleDetails
  * @property string $link
  * @property array $consent
  *
@@ -96,6 +98,18 @@ class CookieConsent extends Widget
      * Label for learn more button
      */
     public $learnMore = 'More info';
+
+    /**
+     * @var $visibleControls
+     * controls view starts open
+     */
+    public $visibleControls = false;
+
+    /**
+     * @var $visibleDetails
+     * details view starts open
+     */
+    public $visibleDetails = false;
 
     /**
      * @var $learnMore
@@ -211,6 +225,8 @@ JS
             'controlsOpen' => $this->controlsOpen,
             'detailsOpen' => $this->detailsOpen,
             'learnMore' => $this->learnMore,
+            'visibleControls' => $this->visibleControls,
+            'visibleDetails' => $this->visibleDetails,
             'link' => $this->link,
             'consent' => $this->_consentData
         ]);
