@@ -23,6 +23,8 @@ use dmstr\cookieconsent\widgets\CookieConsent;
     'acceptAll' => 'AGREE',
     'controlsOpen' => 'CHANGE',
     'learnMore' => 'Datenschutzerklärung',
+    'visibleControls' => true,
+    'visibleDetails' => false,
     'link' => '#',
     'consent' => [
         'necessary' => [
@@ -137,6 +139,18 @@ Example usuage
             <td>The link text</td>
             <td> "More info" </td>
             <td> STRING </td>
+        </tr>
+        <tr>
+            <td>visibleControls</td>
+            <td>If the controls panel should start open</td>
+            <td> false </td>
+            <td> BOOLEAN </td>
+        </tr>
+        <tr>
+            <td>visibleDetails</td>
+            <td>If the details panel should start open</td>
+            <td> false </td>
+            <td> BOOLEAN </td>
         </tr>
         <tr>
             <td>link</td>
