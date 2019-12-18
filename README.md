@@ -9,47 +9,6 @@ solution to the EU Cookie Law
 composer require dmstr/yii2-cookie-consent
 ```
 
-### Usage with PHP
-
-```php
-use dmstr\cookieconsent\widgets\CookieConsent;
-<?= CookieConsent::widget([
-    'name' => 'cookie_consent_status',
-    'path' => '/',
-    'domain' => '',
-    'expiryDays' => 365,
-    'message' => 'We use cookies to ensure the proper functioning of our website. For an improved visit experience we use analysis products. These are used when you agree with "Statistics".',
-    'save' => 'Speichern',
-    'acceptAll' => 'AGREE',
-    'controlsOpen' => 'CHANGE',
-    'learnMore' => 'Datenschutzerklärung',
-    'visibleControls' => true,
-    'visibleDetails' => false,
-    'link' => '#',
-    'consent' => [
-        'necessary' => [
-            'label' => 'Necessary',
-            'checked' => true,
-            'disabled' => true
-        ],
-        'statistics' => [
-            'label' => 'Statistics',
-            'cookies' => [
-                ['name' => '_ga'],
-                ['name' => '_gat', 'domain' => '', 'path' => '/'],
-                ['name' => '_gid', 'domain' => '', 'path' => '/']
-            ],
-            'details' => [
-                'Goal' => 'Create statistics data',
-                'Cookie Names' => '_ga, _gat, _gid, _gali'
-            ]
-        ],
-        'marketing',
-        'external-media'
-    ]
-]) ?>
-```
-
 ## CookieConsentHelper Component
 
 yii config
@@ -61,11 +20,97 @@ yii config
 ]
 ```
 
-Example usuage
+### Usage with PHP
+
+```php
+use dmstr\cookieconsent\widgets\CookieConsent;
+<?= CookieConsent::widget([
+    'name' => 'cookie_consent_status',
+    'path' => '/',
+    'domain' => '',
+    'expiryDays' => 365,
+    'message' => Yii::t('cookie-consent', 'We use cookies to ensure the proper functioning of our website. For an improved visit experience we use analysis products. These are used when you agree with "Statistics".'),
+    'save' => Yii::t('cookie-consent', 'Save'),
+    'acceptAll' => Yii::t('cookie-consent', 'Accept all'),
+    'controlsOpen' => Yii::t('cookie-consent', 'Change'),
+    'detailsOpen' => Yii::t('cookie-consent', 'Cookie Details'),
+    'learnMore' => Yii::t('cookie-consent', 'Privacy statement'),
+    'visibleControls' => true,
+    'visibleDetails' => false,
+    'link' => '#',
+    'consent' => [
+        'necessary' => [
+            'label' => Yii::t('cookie-consent', 'Necessary'),
+            'checked' => true,
+            'disabled' => true
+        ],
+        'statistics' => [
+            'label' => Yii::t('cookie-consent', 'Statistics'),
+            'cookies' => [
+                ['name' => '_ga'],
+                ['name' => '_gat', 'domain' => '', 'path' => '/'],
+                ['name' => '_gid', 'domain' => '', 'path' => '/']
+            ],
+            'details' => [
+                'Goal' => Yii::t('cookie-consent', 'Create statistics data'),
+                'Cookie Names' => '_ga, _gat, _gid, _gali'
+            ]
+        ]
+    ]
+]) ?>
+```
+
 ```php
 <?php if (\Yii::$app->cookieConsentHelper->hasConsent('statistics')): ?>
     <!-- Google Analytics Script-->
 <?php endif; ?>
+```
+
+### Usage with TWIG
+
+```php
+{{ use('dmstr/cookieconsent/widgets/CookieConsent') }}
+{{ CookieConsent_widget({
+    "name": "cookie_consent_status",
+    "path": "/",
+    "domain": "",
+    "expiryDays": 365,
+    "message": t("cookie-consent", "We use cookies to ensure the proper functioning of our website. For an improved visit experience we use analysis products. These are used when you agree with "Statistics"."),
+    "save": t("cookie-consent", "Save"),
+    "acceptAll": t("cookie-consent", "Accept all"),
+    "controlsOpen": t("cookie-consent", "Change"),
+    "detailsOpen": t("cookie-consent", "Cookie Details"),
+    "learnMore": t("cookie-consent", "Privacy statement"),
+    "visibleControls": false,
+    "visibleDetails": false,
+    "link": "#",
+    "consent": {
+        "necessary": {
+            "label": t("cookie-consent", "Necessary"),
+            "checked": true,
+            "disabled": true
+        },
+        "statistics": {
+            "label": t("cookie-consent", "Statistics"),
+            "cookies": [
+                {"name": "_ga", "domain": "", "path": "/"},
+                {"name": "_gat", "domain": "", "path": "/"},
+                {"name": "_gid", "domain": "", "path": "/"},
+                {"name": "_gali", "domain": "", "path": "/"},
+            ],
+            "details": {
+                "Ziel": t("cookie-consent", "Create statistics data"),
+                "Cookies": "_ga, _gat, _gid, _gali"
+            }
+        }
+    }
+}) }}
+```
+
+```php
+{% if app.cookieConsentHelper.hasConsent('statistics') %}
+    {# Google Analytics Code #}
+{% endif %}
 ```
 
 ## Options
@@ -167,11 +212,18 @@ Example usuage
     </tbody>
 </table>
 
-## Open and close the popup
+## Toggle popup, controls and details
 
 ```html
-<button class="cookie-consent-open">Open popup</button>
-<button class="cookie-consent-close">Close popup</button>
+<button class="cookie-consent-open">open</button>
+<button class="cookie-consent-close">close</button>
+<button class="cookie-consent-toggle">toggle</button>
+<button class="cookie-consent-controls-open">Open controls</button>
+<button class="cookie-consent-controls-close">Close controls</button>
+<button class="cookie-consent-controls-toggle">Toggle controls</button>
+<button class="cookie-consent-details-open">Open Details</button>
+<button class="cookie-consent-details-close">Close Details</button>
+<button class="cookie-consent-details-toggle">Toggle details</button>
 ```
 
 ### CSS Example
