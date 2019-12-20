@@ -52,8 +52,16 @@ use dmstr\cookieconsent\widgets\CookieConsent;
                 ['name' => '_gid', 'domain' => '', 'path' => '/']
             ],
             'details' => [
-                'Goal' => Yii::t('cookie-consent', 'Create statistics data'),
-                'Cookie Names' => '_ga, _gat, _gid, _gali'
+                [
+                    'title' => Yii::t('cookie-consent', 'Google Analytics'),
+                    'description' => Yii::t('cookie-consent', 'Create statistics data')
+
+                ],
+                [
+                    'title' => Yii::t('cookie-consent', 'Goal'),
+                    'description' => Yii::t('cookie-consent', '_ga, _gat, _gid, _gali')
+
+                ]
             ]
         ]
     ]
@@ -96,12 +104,19 @@ use dmstr\cookieconsent\widgets\CookieConsent;
                 {"name": "_ga", "domain": "", "path": "/"},
                 {"name": "_gat", "domain": "", "path": "/"},
                 {"name": "_gid", "domain": "", "path": "/"},
-                {"name": "_gali", "domain": "", "path": "/"},
+                {"name": "_gali", "domain": "", "path": "/"}
             ],
-            "details": {
-                "Ziel": t("cookie-consent", "Create statistics data"),
-                "Cookies": "_ga, _gat, _gid, _gali"
-            }
+            "details": [
+                {
+                    "title": t("cookie-consent", "Google Analytics"),
+                    "description": t("cookie-consent", "Create statistics data")
+                },
+                {
+                    "title": t("cookie-consent", "Goal"),
+                    "description": t("cookie-consent", "_ga, _gat, _gid, _gali")
+                
+                }
+            ]
         }
     }
 }) }}

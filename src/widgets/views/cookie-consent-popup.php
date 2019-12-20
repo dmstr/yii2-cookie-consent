@@ -45,11 +45,11 @@ use yii\helpers\Html; ?>
             <?php if (!empty($item['details'])): ?>
                 <label><?= $item["label"] ?></label>
                 <table>
-                    <?php foreach ($item['details'] as $key => $item) : ?>
-                        <?php if (!empty($key) && !empty($item)): ?>
+                    <?php foreach ($item['details'] as $detail) : ?>
+                        <?php if (!empty($detail['title']) && !empty($detail['description'])): ?>
                             <tr>
-                                <td><?= $key ?></td>
-                                <td><?= $item ?></td>
+                                <td><?= $detail['title'] ?></td>
+                                <td><?= $detail['description'] ?></td>
                             </tr>
                         <?php endif; ?>
                     <?php endforeach ?>
