@@ -83,7 +83,7 @@ use dmstr\cookieconsent\widgets\CookieConsent;
     "path": "/",
     "domain": "",
     "expiryDays": 365,
-    "message": t("cookie-consent", "We use cookies to ensure the proper functioning of our website. For an improved visit experience we use analysis products. These are used when you agree with "Statistics"."),
+    "message": t("cookie-consent", "We use cookies to ensure the proper functioning of our website. For an improved visit experience we use analysis products. These are used when you agree with 'Statistics'."),
     "save": t("cookie-consent", "Save"),
     "acceptAll": t("cookie-consent", "Accept all"),
     "controlsOpen": t("cookie-consent", "Change"),
