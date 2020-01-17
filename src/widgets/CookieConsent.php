@@ -11,6 +11,7 @@ namespace dmstr\cookieconsent\widgets;
 
 use dmstr\cookieconsent\assets\CookieConsentAsset;
 use yii\base\Widget;
+use yii\web\View;
 
 /**
  * --- PUBLIC PROPERTIES ---
@@ -161,7 +162,7 @@ window.addEventListener('load', function () {
     }
 });
 JS
-        );
+            , View::POS_END );
     }
 
     public function init()
