@@ -30,10 +30,17 @@ use yii\web\View;
  * @property boolean $visibleDetails
  * @property string $link
  * @property array $consent
+ * @property boolean $enabledIfOnlyNecessary
  *
  * --- PROTECTED PROPERTIES ---
  *
  * @property array $_consentData
+ *
+ *
+ *
+ * --- PRivate PROPERTIES ---
+ *
+ * @property boolean $_show
  *
  * --- WORTH KNOWING ---
  *
@@ -138,6 +145,17 @@ class CookieConsent extends Widget
     public $consent = [];
 
     /**
+     * @var $enabledIfOnlyNecessary
+     * If true, the widget will be enabled if only the 'necessary' consent is enabled
+     */
+    public bool $enabledIfOnlyNecessary = false;
+
+    /**
+     * @var $_show
+     * If true, the widget will be shown
+     * */
+    private $_show = true;
+    /**
      * @var $_consentData
      *
      * consent data for cookie conset js
@@ -168,6 +186,13 @@ JS
     public function init()
     {
         parent::init();
+        if(count($this->consent) === 1
+            && array_key_exists('necessary', $this->consent)
+            && $this->enabledIfOnlyNecessary === false
+        )
+        {
+            $this->_show = false;
+        }
 
         // ensure that $consent has defaults values for each consent.
         foreach ($this->consent as $key => $item) {
@@ -219,6 +244,7 @@ JS
     {
         CookieConsentAsset::register($this->view);
         $this->registerAssets();
+        if(!$this->_show){ return '';}
         return $this->render('cookie-consent-popup', [
             'message' => $this->message,
             'save' => $this->save,
@@ -229,7 +255,8 @@ JS
             'visibleControls' => $this->visibleControls,
             'visibleDetails' => $this->visibleDetails,
             'link' => $this->link,
-            'consent' => $this->_consentData
+            'consent' => $this->_consentData,
+            'enabledIfOnlyNecessary' => $this->enabledIfOnlyNecessary,
         ]);
     }
 }
