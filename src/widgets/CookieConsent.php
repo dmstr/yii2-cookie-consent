@@ -148,7 +148,7 @@ class CookieConsent extends Widget
      * @var $enabledIfOnlyNecessary
      * If true, the widget will be enabled if only the 'necessary' consent is enabled
      */
-    public bool $enabledIfOnlyNecessary = true;
+    public bool $enabledIfOnlyNecessary = false;
 
     /**
      * @var $_show
